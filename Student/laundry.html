@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laundry - Laundry Automation</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidep">
+        <div class="log">
+            <img src="/assets/srm_logo.svg" alt="SRMAP">
+        </div>
+        <ul>
+            <li><a href="/Student/student.html">Profile</a></li>
+            <li class="act"><a href="/Student/laundry.html">Laundry</a></li>
+            <li><a href="/Auth/login.html">Logout</a></li>
+        </ul>
+    </div>
+    <div class="mainp">
+        <div class="nav">
+         Laundry Details
+        </div>
+       <div class="detailsl">
+        <div class="ret">
+            <div class="left">
+                Number of Washes Left : 4
+          </div>
+  
+  <table>
+      <thead>
+          <tr>
+              <th>Name</th>
+              <th>Registration Number</th>
+              <th>Phone Number</th>
+              <th>Email</th>
+              <th>Status</th>
+              
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>John Doe</td>
+              <td>123456</td>
+              <td>123-456-7890</td>
+              <td>john@example.com</td>
+              <td class="stat">pending</td>
+              
+          </tr>
+          <!-- Add more rows as needed -->
+      </tbody>
+  </table>
+        </div>
+
+       </div>
+    </div>
+    <script>
+       
+// Assuming you have an element with class "task"
+var element = document.querySelector('.stat');
+
+// Get the text content of the element
+var textContent = element.textContent || element.innerText;
+
+// Check if the text content contains the word "pending"
+if (textContent.includes('pending')) {
+    // If it contains "pending", set background color to yellow
+    element.style.backgroundColor = 'yellow';
+} else {
+    // If not, set background color to green
+    element.style.backgroundColor = 'green';
+}
+
+
+    </script>
+</body>
+</html>
