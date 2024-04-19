@@ -54,38 +54,29 @@
       </thead>
       <tbody>
           <tr>
-              <td>John Doe</td>
-              <td>123456</td>
-              <td>123-456-7890</td>
-              <td>john@example.com</td>
+              <td>Giridhar</td>
+              <td>AP22110010302</td>
+              <td>1234567890</td>
+              <td>gridhar_bj@srmap.edu.in</td>
               <td class="stat">pending</td>
               
           </tr>
-          <!-- Add more rows as needed -->
       </tbody>
   </table>
         </div>
 
        </div>
     </div>
-    <script>
-       
-// Assuming you have an element with class "task"
-var element = document.querySelector('.stat');
+<script>
+    var element = document.querySelector('.stat');
+    var textContent = element.textContent || element.innerText;
 
-// Get the text content of the element
-var textContent = element.textContent || element.innerText;
-
-// Check if the text content contains the word "pending"
-if (textContent.includes('pending')) {
-    // If it contains "pending", set background color to yellow
-    element.style.backgroundColor = 'yellow';
-} else {
-    // If not, set background color to green
-    element.style.backgroundColor = 'green';
-}
-
-
-    </script>
+    if (textContent.includes('pending')) {
+        element.style.backgroundColor = 'yellow';
+    }
+    else {
+        element.style.backgroundColor = 'green';
+    }
+</script>
 </body>
 </html>
