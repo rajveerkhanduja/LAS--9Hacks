@@ -45,7 +45,7 @@ function handleSubmit(event) {
   }
 
   if (email === dummyData.email && password === dummyData.password) {
-    window.location.href = "/Admin/admin.html";
+    window.location.href = "http://localhost/Laundry-Automation/Admin/admin.php";
   } else {
     alert("Invalid email or password.");
   }

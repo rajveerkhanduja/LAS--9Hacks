@@ -8,15 +8,14 @@ passwordBtn.addEventListener("click", (e) => {
   icon.setAttribute("class", isVisible ? "ri-eye-off-line" : "ri-eye-line");
 });
 
-const dummyData = {
-  email: "navaneethkrishna_bondada@srmap.edu.in",
-  password: "123456"
-};
+// const dummyData = {
+//   text: "AP22110011254",
+//   password: "123456"
+// };
 
 
-function validateEmail(email) {
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@(?:srmap\.edu\.in)$/; // Updated regex to allow underscores
-  return emailRegex.test(email);
+function validateEmail(text) {
+  return true;
 }
 
 
@@ -24,30 +23,36 @@ function validatePassword(password) {
   return password.length >= 6;
 }
 
-
 function handleSubmit(event) {
   event.preventDefault();
-  const emailInput = document.querySelector('input[type="email"]');
+  
+  const regdInput = document.querySelector('input[type="text"]');
   const passwordInput = document.querySelector('input[type="password"]');
   
-  const email = emailInput.value;
+  const regd = regdInput.value;
   const password = passwordInput.value;
 
-  if (!validateEmail(email)) {
-    alert("Please enter a valid SRMAP email address.");
-    return;
-  }
+  console.log('Sending:', `regd=${regd}, password=${password}`);
 
-  if (!validatePassword(password)) {
-    alert("Password must be at least 6 characters long.");
-    return;
-  }
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', 'http://localhost/Laundry-Automation/Auth/validate_login.php', true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-  if (email === dummyData.email && password === dummyData.password) {
-    window.location.href = "/Student/student.html";
-  } else {
-    alert("Invalid email or password.");
-  }
+  xhr.send(`regd=${encodeURIComponent(regd)}&password=${encodeURIComponent(password)}`);
+
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      console.log('Response:', xhr.responseText);
+
+      if (xhr.responseText.trim() === 'success') {
+        // Redirect to student.php with the regd parameter
+        window.location.href = `http://localhost/Laundry-Automation/Student/student.php?regd=${encodeURIComponent(regd)}`;
+      } else {
+        alert('Invalid registration ID or password.');
+      }
+    } else {
+      alert('An error occurred. Please try again.');
+    }
+  };
 }
 
-document.querySelector("form").addEventListener("submit", handleSubmit);
