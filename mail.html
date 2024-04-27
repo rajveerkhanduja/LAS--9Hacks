@@ -1,0 +1,33 @@
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
+def send_email(receiver_email):
+    # Email Configuration
+    sender_email = "your_email@gmail.com"  # Replace with your email address
+    sender_password = "your_password"  # Replace with your email password
+    subject = "Washing Process Completed"
+    message = "Dear User,\n\nWe are pleased to inform you that the washing process of your bag is completed. " \
+              "You can now collect your bag.\n\nThank you for choosing our service.\n\nBest regards,\nYour Laundry Service"
+
+    # Email Content
+    msg = MIMEMultipart()
+    msg['From'] = sender_email
+    msg['To'] = receiver_email
+    msg['Subject'] = subject
+    msg.attach(MIMEText(message, 'plain'))
+
+    # Sending Email
+    try:
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(sender_email, sender_password)
+        server.send_message(msg)
+        server.quit()
+        print("Email sent successfully to", receiver_email)
+    except Exception as e:
+        print("Error sending email:", str(e))
+
+# Example usage
+receiver_email = "recipient@example.com"  # Replace with the recipient's email address
+send_email(receiver_email)
